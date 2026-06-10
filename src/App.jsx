@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import CheckButton from "./components/CheckButton";
 import Result from "./components/Result";
+import ShareButtons from "./components/ShareButtons";
 import { isTodayTheDay } from "./utils/dayChecker";
 
 function App() {
@@ -16,8 +17,12 @@ function App() {
     <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
       <div className="text-center">
         <Header />
+
         <CheckButton onCheck={handleCheck} />
+
         <Result result={result} />
+
+        {result && <ShareButtons result={result} />}
       </div>
     </div>
   );
