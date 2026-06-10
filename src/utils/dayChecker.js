@@ -1,11 +1,27 @@
-export function isTodayTheDay() {
+const STORAGE_KEY = "today-result";
+
+export function getTodayResult() {
   const today = new Date().toDateString();
 
-  let hash = 0;
+  const saved = localStorage.getItem(STORAGE_KEY);
 
-  for (let i = 0; i < today.length; i++) {
-    hash += today.charCodeAt(i);
+  if (saved) {
+    const data = JSON.parse(saved);
+
+    if (data.date === today) {
+      return data.result;
+    }
   }
 
-  return hash % 137 === 0;
+  const result = Math.random() < 0.05 ? "YES." : "NO.";
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify({
+      date: today,
+      result,
+    })
+  );
+
+  return result;
 }

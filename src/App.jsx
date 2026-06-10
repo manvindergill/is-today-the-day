@@ -3,13 +3,13 @@ import Header from "./components/Header";
 import CheckButton from "./components/CheckButton";
 import Result from "./components/Result";
 import ShareButtons from "./components/ShareButtons";
-import { isTodayTheDay } from "./utils/dayChecker";
+import { getTodayResult } from "./utils/dayChecker";
 
 function App() {
   const [result, setResult] = useState("");
 
   const handleCheck = () => {
-    const answer = isTodayTheDay() ? "YES." : "NO.";
+    const answer = getTodayResult();
     setResult(answer);
   };
 
